@@ -54,6 +54,11 @@ you need download pretrained bert model.
 
 ### training 
 
+origin sample:
+id,text,labels
+0000997932d777bf,"Celential.ai - AI recruiting that scales with your hiring",hr|ai
+
+
 ```text
 [training] 8511/8511 [>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] -0.8s/step- loss: 0.0640
 training result:

@@ -16,17 +16,21 @@ def main(text,arch,max_seq_length,do_lower_case):
     input_ids = torch.tensor(input_ids).unsqueeze(0)  # Batch size 1, 2 choices
     logits = model(input_ids)
     probs = logits.sigmoid()
-    return probs.cpu().detach().numpy()[0]
+    probs = probs.cpu().detach().numpy()[0]
+    labels_scores = [(id2label.get(i), p) for i, p in enumerate(probs) if p >= 0.5]
+    return probs, labels_scores
 
 if __name__ == "__main__":
-    text = ''''"FUCK YOUR FILTHY MOTHER IN THE ASS, DRY!"'''
+    text = "Celential.ai - AI recruiting that scales with your hiring!"
     max_seq_length = 256
     do_loer_case = True
     arch = 'bert'
-    probs = main(text,arch,max_seq_length,do_loer_case)
+    probs, labels_scores= main(text,arch,max_seq_length,do_loer_case)
     print(probs)
+    print(labels_scores)
     
 '''
 #output
-[0.98304486 0.40958735 0.9851305  0.04566246 0.8630512  0.07316463]
+[0.9892476  0.24539666 0.97839487 0.00427242 0.7542925  0.00711112]
+[('toxic', 0.9892476), ('obscene', 0.97839487), ('insult', 0.7542925)]
 '''

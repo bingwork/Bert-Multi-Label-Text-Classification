@@ -121,7 +121,7 @@ def run_test(args):
     from pybert.test.predictor import Predictor
     data = TaskData()
     targets, sentences = data.read_data(raw_data_path=config['test_path'],
-                                        preprocessor=EnglishPreProcessor(),
+                                        # preprocessor=EnglishPreProcessor(),
                                         is_train=False)
     lines = list(zip(sentences, targets))
     processor = BertProcessor(vocab_path=config['bert_vocab_path'], do_lower_case=args.do_lower_case)
@@ -176,8 +176,8 @@ def main():
     parser.add_argument('--gradient_accumulation_steps', type=int, default=1)
     parser.add_argument("--train_batch_size", default=8, type=int)
     parser.add_argument('--eval_batch_size', default=8, type=int)
-    parser.add_argument("--train_max_seq_len", default=256, type=int)
-    parser.add_argument("--eval_max_seq_len", default=256, type=int)
+    parser.add_argument("--train_max_seq_len", default=512, type=int)
+    parser.add_argument("--eval_max_seq_len", default=512, type=int)
     parser.add_argument('--loss_scale', type=float, default=0)
     parser.add_argument("--warmup_proportion", default=0.1, type=float)
     parser.add_argument("--weight_decay", default=0.01, type=float)
@@ -200,8 +200,9 @@ def main():
         from pybert.io.task_data import TaskData
         data = TaskData()
         targets, sentences = data.read_data(raw_data_path=config['raw_data_path'],
-                                            preprocessor=EnglishPreProcessor(),
-                                            is_train=True)
+                                            # preprocessor=EnglishPreProcessor(),
+                                            is_train=True,
+                                            args=args)
         data.train_val_split(X=sentences, y=targets, shuffle=True, stratify=False,
                              valid_size=args.valid_size, data_dir=config['data_dir'],
                              data_name=args.data_name)

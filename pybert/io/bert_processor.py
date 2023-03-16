@@ -1,4 +1,3 @@
-import csv
 import torch
 import numpy as np
 from ..common.tools import load_pickle
@@ -54,7 +53,7 @@ class BertProcessor(object):
 
     def get_labels(self):
         """Gets the list of labels for this data set."""
-        return ["toxic","severe_toxic","obscene","threat","insult","identity_hate"]
+        return ['ProductDomain_Education_Edtech', 'ProductDomain_Media_Broadcasting', 'ProductDomain_Media_Cinema', 'ProductDomain_Media_DigitalMedia', 'ai', 'analytics', 'ar/vr', 'cad/plm', 'collaboration & productivity', 'consulting', 'content management', 'crm', 'dev', 'digital advertising', 'e-commerce', 'eda', 'embedded', 'energy', 'erp', 'fintech', 'gaming', 'hardware', 'healthcare', 'hr', 'internet', 'iot', 'it infrastructure', 'it management', 'marketplace', 'networking', 'saas', 'security', 'semiconductors', 'social', 'storage', 'supply chain & logistics', 'unknown', 'supply chain & logistics', 'healthcare']
 
     @classmethod
     def read_data(cls, input_file,quotechar = None):
