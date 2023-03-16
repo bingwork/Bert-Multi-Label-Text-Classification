@@ -1,6 +1,6 @@
 ## Bert multi-label text classification by PyTorch
 
-This repo contains a PyTorch implementation of the pretrained BERT and XLNET model for multi-label text classification.
+This repo contains a PyTorch implementation of the pretrained BERT model for multi-label text classification.
 
 ###  Structure of the code
 
@@ -28,39 +28,24 @@ At the root of the project, you will see:
 |  |  └── ...
 |  └── common # a set of utility functions
 ├── run_bert.py
-├── run_xlnet.py
 ```
 ### Dependencies
-
-- csv
-- tqdm
-- numpy
-- pickle
-- scikit-learn
-- PyTorch 1.1+
-- matplotlib
-- pandas
-- transformers=2.5.1
+Python 3.8
 
 ### How to use the code
 
-you need download pretrained bert model and xlnet model.
+you need download pretrained bert model.
 
-<div class="note info"><p> BERT:  bert-base-uncased</p></div>
-
-<div class="note info"><p> XLNET:  xlnet-base-cased</p></div>
-
-1. Download the Bert pretrained model from [s3](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin) 
-2. Download the Bert config file from [s3](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json) 
-3. Download the Bert vocab file from [s3](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt) 
+1. Download the Bert pretrained model from https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-pytorch_model.bin 
+2. Download the Bert config file from https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-config.json
+3. Download the Bert vocab file from https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt 
 4. Rename:
 
     - `bert-base-uncased-pytorch_model.bin` to `pytorch_model.bin`
     - `bert-base-uncased-config.json` to `config.json`
     - `bert-base-uncased-vocab.txt` to `bert_vocab.txt`
 5. Place `model` ,`config` and `vocab` file into  the `/pybert/pretrain/bert/base-uncased` directory.
-6. `pip install pytorch-transformers` from [github](https://github.com/huggingface/pytorch-transformers).
-7. Download [kaggle data](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data) and place in `pybert/dataset`.
+7. Download kaggle data from https://www.dropbox.com/s/ggl9krhh6dcwhhz/train.csv and https://www.dropbox.com/s/ggl9krhh6dcwhhz/test.csv and place in `pybert/dataset`.
     -  you can modify the `io.task_data.py` to adapt your data.
 8. Modify configuration information in `pybert/configs/basic_config.py`(the path of data,...).
 9. Run `python run_bert.py --do_data` to preprocess data.

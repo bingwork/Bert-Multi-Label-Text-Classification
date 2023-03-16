@@ -94,9 +94,9 @@ class BertProcessor(object):
                 text_a = line[0]
                 label = line[1]
                 if isinstance(label,str):
-                    label = [np.float(x) for x in label.split(",")]
+                    label = [np.float64(x) for x in label.split(",")]
                 else:
-                    label = [np.float(x) for x in list(label)]
+                    label = [np.float64(x) for x in list(label)]
                 text_b = None
                 example = InputExample(guid = guid,text_a = text_a,text_b=text_b,label= label)
                 examples.append(example)

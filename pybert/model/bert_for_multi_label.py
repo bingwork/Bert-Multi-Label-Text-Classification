@@ -1,5 +1,5 @@
 import torch.nn as nn
-from transformers.modeling_bert import BertPreTrainedModel, BertModel
+from transformers.models.bert import BertPreTrainedModel, BertModel
 
 class BertForMultiLable(BertPreTrainedModel):
     def __init__(self, config):
