@@ -68,20 +68,20 @@ class TaskData(object):
         :return:
         '''
         targets, sentences = [], []
-        data = pd.read_csv(raw_data_path)
+        df = pd.read_csv(raw_data_path)
         processor = BertProcessor(vocab_path=config['bert_vocab_path'], do_lower_case=args.do_lower_case)
         label_list = processor.get_labels()
         label2id = {label: i for i, label in enumerate(label_list)}
-        for row in data.values:
+        for index, row in df.iterrows():
             if is_train:
                 target = [0] * len(label_list)
-                if row[2]:
-                    for l in row[2].split('|'):
+                if row.labels:
+                    for l in row.labels.split('|'):
                         target[label2id.get(l)] = 1
                 # target = row[2:]
             else:
                 target = [-1] * len(label_list)
-            sentence = str(row[1])
+            sentence = str(row.text)
             if preprocessor:
                 sentence = preprocessor(sentence)
             if sentence:
