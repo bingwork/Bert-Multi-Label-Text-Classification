@@ -122,7 +122,8 @@ def run_test(args):
     data = TaskData()
     targets, sentences = data.read_data(raw_data_path=config['test_path'],
                                         # preprocessor=EnglishPreProcessor(),
-                                        is_train=False)
+                                        is_train=False,
+                                        args=args)
     lines = list(zip(sentences, targets))
     processor = BertProcessor(vocab_path=config['bert_vocab_path'], do_lower_case=args.do_lower_case)
     label_list = processor.get_labels()
