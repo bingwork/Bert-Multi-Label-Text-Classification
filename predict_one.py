@@ -21,11 +21,29 @@ def main(text,arch,max_seq_length,do_lower_case):
     return probs, labels_scores
 
 if __name__ == "__main__":
-    text = "Celential.ai - AI recruiting that scales with your hiring!"
-    max_seq_length = 256
-    do_loer_case = True
+    text = """Company
+Pixar Animation Studios
+Brief
+Pixar Animation Studios is a group charged with developing state-of-the-art computer technology for the film industry.
+Industry
+Animation
+Founded
+1986
+Specialties
+Animation
+Description
+Pixar Animation Studios, a wholly owned subsidiary of The Walt Disney Company, is an Academy Award®-winning film studio with world-renowned technical, creative and production capabilities in the art of computer animation. The Northern California studio has created some of the most successful and beloved animated films of all time, including “Toy Story,” “Monsters, Inc.,” “Cars,” “The Incredibles,” “Ratatouille,” “WALL•E,” “Up,” “Brave,” “Inside Out,” “Coco” and “Turning Red.” Its movies and technology have won 40 Academy Awards® and the films have grossed more than $14 billion at the worldwide box office. ""Lightyear,"" Pixar's 26th feature, released in theaters on June 17, 2022. 
+
+Pixar's objective is to combine groundbreaking technology and world-class creative talent to develop computer-animated films with memorable characters and heartwarming stories that appeal to audiences of all ages.
+
+
+Careers Page: http://www.pixar.com/careers
+
+Twitter: @PixarRecruiting"""
+    max_seq_length = 512
+    do_lower_case = True
     arch = 'bert'
-    probs, labels_scores= main(text,arch,max_seq_length,do_loer_case)
+    probs, labels_scores= main(text,arch,max_seq_length,do_lower_case)
     print(probs)
     print(labels_scores)
     
