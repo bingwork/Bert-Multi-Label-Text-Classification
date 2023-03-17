@@ -293,8 +293,13 @@ class MultiLabelReport(Metric):
         计算指标得分
         '''
         for i, label in self.id2label.items():
-            auc = roc_auc_score(y_score=self.y_prob[:, i], y_true=self.y_true[:, i])
-            print(f"label:{label} - auc: {auc:.4f}")
+            # for ValueError: Only one class present in y_true. ROC AUC score is not defined in that case.
+            try:
+                auc = roc_auc_score(y_score=self.y_prob[:, i], y_true=self.y_true[:, i])
+                print(f"label:{label} - auc: {auc:.4f}")
+            except ValueError:
+                print(f"label:{label} - auc: 0")
+                pass
 
     def name(self):
         return "multilabel_report"
