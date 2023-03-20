@@ -19,6 +19,8 @@ from pybert.train.metrics import AUC, AccuracyThresh, MultiLabelReport
 from pybert.callback.optimizater.adamw import AdamW
 from pybert.callback.lr_schedulers import get_linear_schedule_with_warmup
 from torch.utils.data import RandomSampler, SequentialSampler
+import pandas as pd
+import json
 
 warnings.filterwarnings("ignore")
 
@@ -152,7 +154,14 @@ def run_test(args):
                           logger=logger,
                           n_gpu=args.n_gpu)
     result = predictor.predict(data=test_dataloader)
-    print(result)
+    labels_scores_list = []
+    for r in result:
+        labels_scores = [[id2label.get(i), p] for i, p in enumerate(r) if p >= 0.5]
+        labels_scores_list.append(json.dumps(labels_scores))
+    df = pd.DataFrame(labels_scores_list)
+    df.to_csv(config.get('result') + '/do_test.csv')
+    print(len(labels_scores_list))
+    print(labels_scores_list[:10])
 
 
 def main():
