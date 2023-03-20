@@ -158,10 +158,11 @@ def run_test(args):
     for r in result:
         labels_scores = [[id2label.get(i), float(p)] for i, p in enumerate(r) if p >= 0.5]
         labels_scores_list.append(json.dumps(labels_scores))
-    df = pd.DataFrame(labels_scores_list)
-    df.to_csv(config.get('result') + '/do_test.csv')
     print(len(labels_scores_list))
     print(labels_scores_list[:10])
+    df = pd.DataFrame(labels_scores_list)
+    df.to_csv(config.get('result') / 'do_test.csv')
+
 
 
 def main():
