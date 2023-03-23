@@ -177,7 +177,7 @@ def main():
     parser.add_argument("--mode", default='min', type=str)
     parser.add_argument("--monitor", default='valid_loss', type=str)
 
-    parser.add_argument("--epochs", default=6, type=int)
+    parser.add_argument("--epochs", default=30, type=int)
     parser.add_argument("--resume_path", default='', type=str)
     parser.add_argument("--predict_checkpoints", type=int, default=0)
     parser.add_argument("--valid_size", default=0.2, type=float)
@@ -194,7 +194,7 @@ def main():
     parser.add_argument("--weight_decay", default=0.01, type=float)
     parser.add_argument("--adam_epsilon", default=1e-8, type=float)
     parser.add_argument("--grad_clip", default=1.0, type=float)
-    parser.add_argument("--learning_rate", default=5e-5, type=float)
+    parser.add_argument("--learning_rate", default=1e-4, type=float)
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--fp16', action='store_true')
     parser.add_argument('--fp16_opt_level', type=str, default='O1')
